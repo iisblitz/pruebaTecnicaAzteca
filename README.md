@@ -1,70 +1,53 @@
-# Getting Started with Create React App
+#Proyecto "Prueba técnica Banco azteca"
+##Asignación:
+Configuración del Proyecto React:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Crea un nuevo proyecto React usando Create React App o una herramienta similar.
+Asegúrate de limpiar el proyecto y mantener solo los componentes necesarios.
+Consumo de la API:
 
-## Available Scripts
+Utiliza el método GET para consumir la API https://jsonplaceholder.typicode.com/posts.
+Muestra los datos de los posts en una tabla.
+Implementa un buscador para filtrar los posts por título.
+Implementa la paginación de la tabla, mostrando 10 posts por página.
+Crea un formulario que incluya campos para userId, id, title, body.
+Utiliza el método POST para enviar los datos del formulario a https://jsonplaceholder.typicode.com/posts. Asegúrate de que todos los campos del formulario sean obligatorios.
+Entregable:
 
-In the project directory, you can run:
+Sube el proyecto a un repositorio de GIT.
+Incluye un archivo README con los datos necesarios para probar el proyecto.
+Comparte la URL del repositorio para la revisión.
 
-### `npm start`
+##Procedimiento:
+1.- Se genera el proyecto en Git bash con el comando "npx create-react-app prueba-tecnica-frontend-davidgonzalez.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+2.- se eliminan los archivos de template y el modo prueba estricta de react.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+3.- se instala axios.
 
-### `npm test`
+4.- se genera un useEffect donde se consulta a travez de axios el sitio web determinado por el proyecto, y se guarda en el estado de react como setPosts.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+5.- se genera el metodo add post, el cual va a concatenar variables de diferentes estados y enviarlos por axios.post.
 
-### `npm run build`
+nota, se usa try catch con lo cual si cualquiera de los dos metodos falla se contará con un mensaje de error.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+6.- se generan variables para llevar el control de la paginación:
+index of last post - nos va a decir el indice del primer post de la siguiente pagina.
+index of first post - nos va a decir el indice del primer post de la siguiente pagina.
+current posts - un sub array con los posts entre los indices
+paginate - metdo para actualizar la pgina actual en el estado de react.
+filtered posts - se usa el metodo de filtrado de arrays para dejar solo los posts que incluyan cierto numero de busqueda
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+7.- return - aqui se hace el jsx, es decir el mix de elementos de html y js para generar una pagina en react
+h1- titulo
+input- captura el elemento para hacer el filtrado
+button - ejecuta el llamado para ajustar la paginación
+tabla se usa para renderizar los elementos de la consulta - id - title -
+body
+tr define una fila cada th es un header
+tbody es el cuerpo de la tabla con una funcion map para representar todos los elementos de la consulta hecha en axios
+button - anterior y siguiente para controlar la paginacion
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+h2 subtitulo para el formulario de captura
+input - aqui se fijan los valores de las variables de estado que se mandaran al axios post
+button - agregar - llama la funcion addPost, la cual hace una validacion de que los campos estén llenos y se envia por axios
